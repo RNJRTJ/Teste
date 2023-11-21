@@ -4,7 +4,7 @@ COPY . .
 
 RUN mvn clean package
 
-FROM openjdk:17-jdk-slim
+FROM ibm-semeru-runtimes:open-17-jre-centos7
 
 EXPOSE 8080
 
