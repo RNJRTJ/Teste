@@ -10,14 +10,10 @@ public enum Category {
 	private final String name;
 	
 	private Category(String name) {
-		
 		this.name = name;
 	}
 	
-
 	public String getName() {
 		return name;
-	}
-	
-	
+	}	
 }

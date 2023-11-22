@@ -56,7 +56,7 @@
 
                         <li class="nav-item utilities-item ms-0">
                             <div class="utilities-div rounded-pill me-3">
-                                <a href="restrictedArea.html"
+                                <a href="/enterprise/listarAll"
                                     class="nav-link d-flex align-items-center text-decoration-none ms-1">
                                     <img src="../imgs/warning-default.svg" class="rounded-circle me-2"
                                         alt="Área restrita">
@@ -70,7 +70,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link fw-semibold" href="about.html">Sobre nós</a>
+                            <a class="nav-link fw-semibold" href="../pages/about.html">Sobre nós</a>
                         </li>
 
                         <li class="nav-item dropdown">
@@ -79,15 +79,15 @@
                                 Parceiros e clientes
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="partnersClients.html">Conheça nossos parceiros</a>
+                                <li><a class="dropdown-item" href="../pages/partnersClients.html">Conheça nossos parceiros</a>
                                 </li>
-                                <li><a class="dropdown-item" href="partnersClients.html">Saiba mais sobre nossos
+                                <li><a class="dropdown-item" href="../pages/partnersClients.html">Saiba mais sobre nossos
                                         clientes</a></li>
                             </ul>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link fw-semibold" href="contacts.html">Contatos</a>
+                            <a class="nav-link fw-semibold" href="../pages/contacts.html">Contatos</a>
                         </li>
                     </ul>
 
@@ -112,13 +112,16 @@
             </div>
 
             <div th:object="${enterprise}">
-                <p>Empreendimento nº <span th:text="${enterprise.id}"></span></p>
+                <p>Empreendimento nº 
+					<span class="fw-semibold"  th:text="${enterprise.idEnterprise}"></span> - 
+					<span th:text="${enterprise.fantasyName}"></span>
+				</p>
             </div>
 
             <div class="row">
                 <div class="col-lg-12">
                     <p class="mb-4">Listagem dos produtos:
-                        <a href="ROTA PARA ABRIR O formProcuct" class="ms-3 text-decoration-none">
+                        <a href="/enterprise/showFormProduct" class="ms-3 text-decoration-none">
                             <span class="btn btn-primary mt-2">Cadastrar novo</span>
                         </a>
                     </p>
@@ -135,19 +138,19 @@
                             </thead>
 
                             <tbody>
-                                <tr th:each="procuct : ${procuct}">
-                                    <td th:text="${procuct.id}"></td>
+                                <tr th:each="procuct : ${products}">
+                                    <td th:text="${procuct.idProduct}"></td>
                                     <td th:text="${procuct.name}"></td>
                                     <td th:text="${procuct.category}"></td>
                                     <td><span th:text="'R$ ' + ${procuct.value}"></span></td>
                                     <td>
                                         <a class="btn btn-success btn-sm ms-3"
-                                            th:href="@{/procuct/editar/{id}(id=${procuct.id})}">
+                                            th:href="@{/procuct/editar/{id}(id=${procuct.idProduct})}">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
 
                                         <a class="btn btn-danger btn-sm ms-3"
-                                            th:href="@{/procuct/deletar/{id}(id=${procuct.id})}">
+                                            th:href="@{/procuct/deletar/{id}(id=${procuct.idProduct})}">
                                             <i class="bi bi-trash-fill"></i>
                                         </a>
                                     </td>
@@ -159,12 +162,12 @@
             </div>
 
             <div class="row mt-4">
-                <div class="col col-md-6 d-grid mx-auto mt-2 px-3">
-                    <a href="javascript:history.back()" class="btn btn-outline-primary fw-semibold button-link">Voltar</a>
-                </div>
+<!--                <div class="col col-md-6 d-grid mx-auto mt-2 px-3">-->
+<!--                    <a href="javascript:history.back()" class="btn btn-outline-primary fw-semibold button-link">Voltar</a>-->
+<!--                </div>-->
 
                 <div class="col col-md-6 d-grid mx-auto mt-2 px-3">
-                    <a href="ROTA PARA O restrictedArea" class="btn btn-outline-primary fw-semibold button-link">Concluir</a>
+                    <a href="/enterprise/listarAll" class="btn btn-outline-primary fw-semibold button-link">Concluir</a>
                 </div>
             </div>
 

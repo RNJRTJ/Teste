@@ -12,4 +12,8 @@ public interface EnterpriseRepository extends JpaRepository<Enterprise, Long>{
 	@Query
 	(value = "SELECT * FROM enterprise WHERE id_user= :idUser", nativeQuery = true)
 	public List<Enterprise> findAllByIdUser(@Param("idUser") Long user);	
+	
+	 @Query
+	 (value = "SELECT * FROM enterprise WHERE num_store = :numStore AND id_market = :id_market", nativeQuery = true)
+	 public Enterprise findBynumStore(String numStore, Long id_market); 
 }

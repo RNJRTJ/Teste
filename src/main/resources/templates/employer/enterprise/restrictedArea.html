@@ -55,7 +55,7 @@
 
                         <li class="nav-item utilities-item ms-0">
                             <div class="utilities-div rounded-pill me-3">
-                                <a href="restrictedArea.html"
+                                <a href="/enterprise/listarAll"
                                     class="nav-link d-flex align-items-center text-decoration-none ms-1">
                                     <img src="../imgs/warning-default.svg" class="rounded-circle me-2"
                                         alt="Área restrita">
@@ -69,7 +69,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link fw-semibold" href="about.html">Sobre nós</a>
+                            <a class="nav-link fw-semibold" href="../pages/about.html">Sobre nós</a>
                         </li>
 
                         <li class="nav-item dropdown">
@@ -78,15 +78,15 @@
                                 Parceiros e clientes
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="partnersClients.html">Conheça nossos parceiros</a>
+                                <li><a class="dropdown-item" href="../pages/partnersClients.html">Conheça nossos parceiros</a>
                                 </li>
-                                <li><a class="dropdown-item" href="partnersClients.html">Saiba mais sobre nossos
+                                <li><a class="dropdown-item" href="../pages/partnersClients.html">Saiba mais sobre nossos
                                         clientes</a></li>
                             </ul>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link fw-semibold" href="contacts.html">Contatos</a>
+                            <a class="nav-link fw-semibold" href="../pages/contacts.html">Contatos</a>
                         </li>
                     </ul>
 
@@ -114,7 +114,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-10">
+                    <div class="col-lg-9">
                         <p class="fs-6 mb-5">Na área do empreendedor você tem mobilidade para manipular seus produtos de forma prática e dinâmica.
                             Acesse cada empreendimento seu individualmente e mantenha sempre sua estante virtual de produtos atualizada.
                             Saiba mais sobre nosso trabalho acessando a seção "Sobre nós" da nossa plataforma, 
@@ -122,8 +122,8 @@
                         </p>
                     </div>
 
-                    <div class="col-lg-2 mb-5">
-                        <a href="/enterprise/show" class="btn btn-primary d-flex align-items-center justify-content-center px-1"><i class="bi bi-plus-circle-dotted fs-4 pe-2"></i> Cadastrar</a>
+                    <div class="col-lg-3 mb-5">
+                        <a href="/enterprise/showFormEnterprise" class="btn btn-primary d-flex align-items-center justify-content-center px-1"><i class="bi bi-plus-circle-dotted fs-4 pe-2"></i>Habilitar empreendimento</a>
                     </div>
                 </div>
             </div>
@@ -132,8 +132,8 @@
                 <div class="col-xl-3 col-lg-4 col-md-6" th:each="enterprise : ${enterprises}">
                     <div class="d-flex justify-content-center">
                         <div class="card card-enterprise">
-                            <div class="img-container">
-                                <img src="../imgs/barraca.png" class="card-img-top" alt="Imagem do empreendimento">
+                            <div class="img-container"> <!-- src="../imgs/barraca.png" ${enterprise.idEnterprise} -->
+                                <img src="../imgs/barraca.png" th:src="|/enterprise/imagem/${enterprise.idEnterprise}|" class="card-img-top" alt="Imagem do empreendimento">
                             </div>
                             
                             <div class="card-body">
@@ -142,8 +142,8 @@
                                 <p class="py-1" th:text="${enterprise.description}">Max. 52 caracteres</p>
 
                                 <div class="d-flex flex-wrap justify-content-between">
-                                    <a href="ROTA DE ABRIR A listProduct" class="btn btn-primary py-1 mb-1"><i class="bi bi-pencil-square"></i> Editar</a>
-                                    <a href="ROTA DE EXCLUIR EMPREENDIMENTO USANDO O UTILS OU NAO" class="btn btn-primary py-1 mb-1"><i class="bi bi-trash"></i> Excluir</a>
+                                    <a href="ROTA DE ABRIR A listProduct" class="btn btn-primary py-1 mb-1"><i class="bi bi-pencil-square"></i> Ver produtos</a>
+                                    <a href="ROTA DE EXCLUIR EMPREENDIMENTO USANDO O UTILS OU NAO" class="btn btn-primary py-1 mb-1"><i class="bi bi-trash"></i> </a>
                                 </div>
                             </div>
                         </div> <!-- End .card -->

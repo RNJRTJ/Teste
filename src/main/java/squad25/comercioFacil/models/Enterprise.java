@@ -1,8 +1,16 @@
 package squad25.comercioFacil.models;
 
 import java.util.List;
-
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "enterprise")
@@ -17,29 +25,25 @@ public class Enterprise {
 	private String fantasyName;
 	private String cnpj;
 	private Long numStore;
-	
 	private String description;
+	
+    @Column(columnDefinition = "longblob")
+	private byte[] imagem;
 	
 	@OneToMany(mappedBy = "enterprise")
 	private List<Product> product;
 	
-	
-	//Employer idUser
 	@ManyToOne
 	@JoinColumn(name = "id_user", nullable = false)
 	private User user;
 	
-	
-	
-	@OneToOne
-	@JoinColumn( name = "id_market")
+	@OneToOne //@ManyToOne
+	@JoinColumn(name = "id_market")
 	private MarketPlace marketPlace;
 	
-	
-	
-	public Enterprise() {
-		 
+	public Enterprise() {	 
 	}
+	
 	public Enterprise(Long idEnterprise, String fantasyName, String cnpj, Long numStore, String description, User user, MarketPlace marketPlace) {
 		this.idEnterprise = idEnterprise;
 		this.fantasyName = fantasyName;
@@ -48,53 +52,73 @@ public class Enterprise {
 		this.user = user;
 		this.marketPlace = marketPlace;
 		this.description = description;
-		}
+	}
+	
 	public Long getIdEnterprise() {
 		return idEnterprise;
 	}
+	
 	public void setIdEnterprise(Long idEnterprise) {
 		this.idEnterprise = idEnterprise;
 	}
+	
 	public String getFantasyName() {
 		return fantasyName;
 	}
+	
 	public void setFantasyName(String fantasyName) {
 		this.fantasyName = fantasyName;
 	}
+	
 	public String getCnpj() {
 		return cnpj;
 	}
+	
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
+	
 	public Long getNumStore() {
 		return numStore;
 	}
+	
 	public void setNumStore(Long numStore) {
 		this.numStore = numStore;
 	}
+	
 	public User getUser() {
 		return user;
 	}
+	
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
 	public MarketPlace getMarketPlace() {
 		return marketPlace;
 	}
+	
 	public void setMarketPlace(MarketPlace marketPlace) {
 		this.marketPlace = marketPlace;
 	}
+	
 	public String getDescription() {
 		return description;
 	}
+	
 	public void setDescription(String description) {
 		this.description = description;
-	}	
-	
-	
-	
+	}
+
+	public byte[] getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(byte[] imagem) {
+		this.imagem = imagem;
+	}
 }

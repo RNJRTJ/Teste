@@ -70,7 +70,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link fw-semibold" href="about.html">Sobre nós</a>
+                            <a class="nav-link fw-semibold" href="../pages/about.html">Sobre nós</a>
                         </li>
 
                         <li class="nav-item dropdown">
@@ -79,15 +79,15 @@
                                 Parceiros e clientes
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="partnersClients.html">Conheça nossos parceiros</a>
+                                <li><a class="dropdown-item" href="../pages/partnersClients.html">Conheça nossos parceiros</a>
                                 </li>
-                                <li><a class="dropdown-item" href="partnersClients.html">Saiba mais sobre nossos
+                                <li><a class="dropdown-item" href="../pages/partnersClients.html">Saiba mais sobre nossos
                                         clientes</a></li>
                             </ul>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link fw-semibold" href="contacts.html">Contatos</a>
+                            <a class="nav-link fw-semibold" href="../pages/contacts.html">Contatos</a>
                         </li>
                     </ul>
 
@@ -109,11 +109,11 @@
             <div class="row">
                 <div class="col-lg-6 my-4">
                     <div class="section-title py-1">
-                        <h2 class="fs-3 fw-bold">Cadastre seu empreendimento</h2>
+                        <h2 class="fs-3 fw-bold">Habilite seu empreendimento</h2>
                         <p class="fs-6 pb-2 fw-">Preencha as informações e vincule seu estabelecimento</p>
                     </div>
 
-                    <form th:object="${enterprise}">
+                    <form th:action="@{/enterprise/findMarketplace}" th:object="${marketPlace}" method="get">
                         <div class="form-page p-4">
                             <p class="mb-1"><i class="bi bi-1-circle pe-2"></i>Dados da feira comercial:</p>
 
@@ -123,11 +123,12 @@
                                         filtre uma existente:</label>
 
                                     <div class="col-sm-10 col-9 pe-0">
-                                        <input type="text" class="form-control" id="inputNameEnterprise" name="fantasyName" th:required="required">
+                                        <input type="text" class="form-control" id="inputNameEnterprise" name="nameMarket" th:field="*{nameMarket}" th:required="required">
                                     </div>
 
                                     <div class="col-sm-2 col-3 text-center">
-                                        <button type="submit" class="btn btn-primary rounded-pill py-2"><i class="bi bi-search"></i></button>
+										<button type="submit" class="btn btn-primary rounded-pill py-2"><i class="bi bi-search"></i></button>
+<!--                                        <a th:href="@{/enterprise/findMarketplace/{nameMarket}(nameMarket=${marketPlace.nameMarket})}" class="btn btn-primary rounded-pill py-2"><i class="bi bi-search"></i></a>-->
                                     </div>
                                 </div>
                             </div>
@@ -143,7 +144,7 @@
                                 <span class="input-group-text"></span>
 
                                 <select class="form-select" id="inputSelectCity">
-                                    <option selected>Cidade</option>
+                                    <option selected>Feiras</option>
                                     <option value="1">Feira Municipal de Maricá</option>
                                     <option value="2">Mercadão Santos</option>
                                     <option value="3">Barracão Aliança de Camaçari</option>
@@ -152,14 +153,14 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Resultado da consulta:</label> <!-- display: none;  th:field="*{city}"  th:field="*{street}"-->
-                                <input type="text" class="form-control mb-2" th:required="required" disabled>
+                                <input type="text" class="form-control mb-2" th:field="*{nameMarket}" disabled>
 
                                 <div class="input-group my-2">
-                                    <input type="text" class="form-control" th:required="required" disabled>
+                                    <input type="text" class="form-control" th:field="*{city}" disabled>
 
                                     <span class="input-group-text"></span>
 
-                                    <input type="text" class="form-control" th:required="required" disabled>
+                                    <input type="text" class="form-control" th:field="*{street}" disabled>
                                 </div>
                             </div>
                         </div> <!-- End .form-page -->
@@ -167,7 +168,7 @@
                 </div>
 
                 <div class="col-lg-6 my-3">
-                    <form th:object="${enterprise}" method="get">
+                    <form th:action="@{/enterprise/findEnterprise}" th:object="${enterprise}" method="get">
                         <div class="form-page p-4">
                             <p class="mb-1"><i class="bi bi-2-circle pe-2"></i>Dados do empreendimento:</p>
 
@@ -180,7 +181,7 @@
                                     </label>
         
                                     <div class="col-sm-10 col-9 pe-0">
-                                        <input type="text" class="form-control" id="inputCodEnterprise" name="codEnterprise" th:required="required">
+                                        <input type="text" class="form-control" id="inputCodEnterprise" name="codEnterprise" th:field="*{numStore}" th:required="required">
                                     </div>
         
                                     <div class="col-sm-2 col-3 text-center">
@@ -191,13 +192,12 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Resultado da consulta:</label>
-<!--        						th:field="*{fantasyName}"	th:field="*{cnpj}"-->
                                 <div class="input-group my-2">
-                                    <input type="text" class="form-control" th:required="required" disabled>
+                                    <input type="text" class="form-control" th:field="*{fantasyName}" disabled>
         
                                     <span class="input-group-text"></span>
         
-                                    <input type="text" class="form-control" th:required="required" disabled>
+                                    <input type="text" class="form-control" th:field="*{cnpj}" disabled>
                                 </div>
                             </div>
         
@@ -205,7 +205,14 @@
                     </form>
 
                     <!-- diplay: none; th:action="ROTA DE SALVAR IMAGEM E ABRIR A LISTAGEM DOS PRODUTOS" -->
-                    <form th:object="${enterprise}" method="post" class="mt-3">
+                    <form th:action="@{/enterprise/atualizarPreRegistro}" class="mt-3" th:object="${enterprise}" method="post" enctype="multipart/form-data">
+                        <div class="row px-3">
+                            <div class="col-12 px-4 pt-4 pb-3">
+                                <label class="form-label"><i class="bi bi-3-circle me-2"></i>Descreva uma breve descrição:</label>
+                                <input type="text" class="form-control" maxlength="52" th:field="*{description}" th:required="required">
+                            </div>
+                        </div>
+                        
                         <div class="row justify-content-center align-items-end">
                             <div class="col-sm-7 px-5 pb-4">
                                 <div id="divPhoto">

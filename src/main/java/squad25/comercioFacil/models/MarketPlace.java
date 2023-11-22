@@ -1,7 +1,11 @@
 package squad25.comercioFacil.models;
 
-
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "marketPlace")
@@ -20,12 +24,9 @@ public class MarketPlace {
 	private String street;
 	
 	public MarketPlace() {
-		
 	}
 	
-	public MarketPlace(Long idMarket, String nameMarket, String state, String city, String neighborhood,
-			String street) {
-		super();
+	public MarketPlace(Long idMarket, String nameMarket, String state, String city, String neighborhood, String street) {
 		this.idMarket = idMarket;
 		this.nameMarket = nameMarket;
 		this.state = state;
@@ -84,8 +85,5 @@ public class MarketPlace {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	}
-	
-	
-	
+	}	
 }

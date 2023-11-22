@@ -1,7 +1,5 @@
 package squad25.comercioFacil.models;
 
-
-
 import jakarta.persistence.*;
 import squad25.comercioFacil.util.AccesLevel;
 
@@ -16,14 +14,13 @@ public class Employer extends User{
 	@Column(columnDefinition = "TEXT")	
 	private String password;
 	
-	
-	
 	public Employer(Long idUser,AccesLevel accesLevel, String userName, String telephone, String email, String login, String password) {
 		super(idUser, accesLevel, userName, telephone, email);
 		this.login = login;
 		this.password = password;
 		
 	}
+	
 	public Employer() {
 		
 	}
@@ -43,7 +40,4 @@ public class Employer extends User{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
-	
 }
